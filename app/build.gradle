@@ -64,8 +64,6 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.23.1"
 
-    //Rating Bar
-    implementation 'io.github.a914-gowtham:compose-ratingbar:1.2.3'
     // Moshi
     implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
     // Retrofit with Moshi Converter
