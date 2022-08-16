@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ItemImage(imageUrl: String, contentAlignment: Alignment, isFavorite: Boolean) {
+fun ItemImage(modifier: Modifier,imageUrl: String, contentAlignment: Alignment, isFavorite: Boolean = false) {
     Box(
-        modifier = Modifier.wrapContentWidth(),
+        modifier = modifier,
         contentAlignment = contentAlignment
     ) {
         AsyncImage(
@@ -21,7 +21,6 @@ fun ItemImage(imageUrl: String, contentAlignment: Alignment, isFavorite: Boolean
                 .padding(4.dp),
             imageUrl = imageUrl
         )
-        if (isFavorite)
-        FavoriteIcon()
+        FavoriteIcon(isFavorite)
     }
 }

@@ -36,6 +36,7 @@ fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ItemImage(
+            Modifier.fillMaxWidth(),
             scrollItem.ImageUrl,
             contentAlignment = Alignment.TopEnd,
             false
