@@ -3,9 +3,9 @@ package com.example.beymenchallange.ui.feature.detailScreen
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.beymenchallange.data.remote.api.ApiService
-import com.example.beymenchallange.data.remote.models.DetailScreenData
 import com.example.beymenchallange.data.local.models.FavoriteEntity
+import com.example.beymenchallange.data.remote.ProductRemoteData
+import com.example.beymenchallange.data.remote.models.DetailScreenData
 import com.example.beymenchallange.domain.FavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val apiService: ApiService,
+    private val productRemoteData: ProductRemoteData,
     private val favoriteUseCase: FavoriteUseCase
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ class DetailViewModel @Inject constructor(
         var result: DetailScreenData? = null
         viewModelScope.launch {
             runBlocking {
-                result = apiService.getDetailPage(code)
+                result = productRemoteData.getDetailPage(code)
                 favoriteUseCase.getFavoriteItems().forEach {
                     if (it.productId == result!!.Result?.ProductId) {
                         result!!.isFavorite = it.isFavorite

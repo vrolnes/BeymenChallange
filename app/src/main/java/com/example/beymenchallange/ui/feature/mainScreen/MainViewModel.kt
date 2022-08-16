@@ -4,8 +4,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.beymenchallange.data.remote.models.MainScreenData
-import com.example.beymenchallange.data.remote.api.ApiService
 import com.example.beymenchallange.data.local.models.FavoriteEntity
+import com.example.beymenchallange.data.remote.ProductRemoteData
 import com.example.beymenchallange.domain.FavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val apiService: ApiService,
+    private val productRemoteData: ProductRemoteData,
     private val favoriteUseCase: FavoriteUseCase
 ) : ViewModel() {
 
@@ -39,7 +39,7 @@ class MainViewModel @Inject constructor(
         var result: MainScreenData? = null
         viewModelScope.launch {
             runBlocking {
-                result = apiService.getMainPage(
+                result = productRemoteData.getMainPage(
                     siralama = "akillisiralama",
                     sayfa = "1",
                     categoryId = "10020",
