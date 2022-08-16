@@ -1,4 +1,4 @@
-package com.example.akakcechallenge.ui.component
+package com.example.beymenchallange.ui.component
 
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
