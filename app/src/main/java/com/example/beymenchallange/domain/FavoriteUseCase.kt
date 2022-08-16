@@ -1,17 +1,17 @@
 package com.example.beymenchallange.domain
 
-import com.example.beymenchallange.data.local.FavoriteLocalData
 import com.example.beymenchallange.data.local.models.FavoriteEntity
+import com.example.beymenchallange.data.repository.AppRepository
 import javax.inject.Inject
 
-class FavoriteUseCase @Inject constructor(private val localFavorite: FavoriteLocalData) {
+class FavoriteUseCase @Inject constructor(private val appRepository: AppRepository) {
 
     fun getFavoriteItems(): List<FavoriteEntity> {
-        return localFavorite.getFavorites()
+        return appRepository.getFavorites()
     }
 
     fun setFavoriteItem(product: FavoriteEntity) {
-        localFavorite.setFavorite(product)
+        appRepository.setFavorite(product)
     }
 
 }
