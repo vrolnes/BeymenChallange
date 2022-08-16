@@ -1,4 +1,4 @@
-package com.example.beymenchallange.models
+package com.example.beymenchallange.data.models
 
 data class MainScreenData(
     val Exception: Any?,
@@ -39,7 +39,8 @@ data class Product(
     val ProductId: Int,
     val SizeList: List<Size>,
     val StrikeThroughPriceToShowOnScreen: Double,
-    val StrikeThroughPriceToShowOnScreenText: String
+    val StrikeThroughPriceToShowOnScreenText: String,
+    var isFavorite: Boolean?
 )
 
 data class Size(

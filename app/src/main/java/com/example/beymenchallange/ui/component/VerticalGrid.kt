@@ -10,22 +10,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.beymenchallange.models.Product
+import com.example.beymenchallange.data.models.Product
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun VerticalGrid(gridItems: List<Product>, onItemClicked: (String) -> Unit, cellSize: Int) {
+fun VerticalGrid(gridItems: List<Product>, onItemClicked: (String) -> Unit, cellSize: Int, onFavClicked: (Int) -> Unit) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(cellSize),
     ) {
         items(gridItems.size) { index ->
-            VerticalGridItem(scrollItem = gridItems[index], onItemClicked)
+            VerticalGridItem(scrollItem = gridItems[index], onItemClicked, onFavClicked)
         }
     }
 }
 
 @Composable
-fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit) {
+fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit, onFavClicked: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,7 +40,9 @@ fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit) {
             scrollItem.ImageUrl,
             contentAlignment = Alignment.TopEnd,
             false
-        )
+        ) {
+            onFavClicked(scrollItem.ProductId)
+        }
         Text(text = scrollItem.DisplayName)
     }
 }

@@ -1,10 +1,11 @@
-package com.example.beymenchallange.models
+package com.example.beymenchallange.data.models
 data class DetailScreenData(
     val Exception: Any?,
     val IsOriginFromCheckout: Boolean?,
     val Message: Any?,
     val Result: DetailResult?,
-    val Success: Boolean?
+    val Success: Boolean?,
+    var isFavorite: Boolean?
 )
 
 data class DetailResult(

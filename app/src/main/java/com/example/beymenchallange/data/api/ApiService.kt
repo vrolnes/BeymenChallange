@@ -1,7 +1,7 @@
-package com.example.beymenchallange.api
+package com.example.beymenchallange.data.api
 
-import com.example.beymenchallange.models.DetailScreenData
-import com.example.beymenchallange.models.MainScreenData
+import com.example.beymenchallange.data.models.DetailScreenData
+import com.example.beymenchallange.data.models.MainScreenData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

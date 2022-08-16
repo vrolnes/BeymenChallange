@@ -14,7 +14,8 @@ import com.example.beymenchallange.ui.component.ItemImage
 
 @Composable
 fun DetailScreen(code: String?, detailViewModel: DetailViewModel) {
-    detailViewModel.getDetailScreen(code.toString())?.let {
+    detailViewModel.getDetailScreen(code.toString())
+    detailViewModel.responseState.value?.let {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -25,8 +26,10 @@ fun DetailScreen(code: String?, detailViewModel: DetailViewModel) {
                 imageUrl = it.Result?.Images?.get(0)?.Images?.get(0)?.ImageUrl.toString(),
                 contentAlignment = Alignment.TopEnd,
                 true
-            )
-            it.Result?.let { it1 ->
+            ){
+                detailViewModel.setFavorite(it.Result?.ProductId!!)
+            }
+          it.Result?.let { it1 ->
                 ItemDetailInfo(modifier = Modifier.fillMaxWidth(), item = it1)
                 ItemDescription(modifier = Modifier.fillMaxWidth(), item = it1)
             }

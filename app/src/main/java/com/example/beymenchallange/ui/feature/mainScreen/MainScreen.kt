@@ -15,17 +15,21 @@ fun MainScreen(
     onItemClicked: (String) -> Unit,
     mainViewModel: MainViewModel
 ) {
-    mainViewModel.getMainScreen()?.let {
+    mainViewModel.getMainScreen()
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Change Grid Style", modifier = Modifier.clickable {
                 mainViewModel.changeGrid()
             })
-            it.Result.ProductList.let { it1 ->
-                VerticalGrid(
-                    gridItems = it1,
-                    onItemClicked = onItemClicked,
-                    cellSize = mainViewModel.state.value
-                ) }
+            mainViewModel.responseState.value?.Result?.ProductList.let { it1 ->
+                if (it1 != null) {
+                    VerticalGrid(
+                        gridItems = it1,
+                        onItemClicked = onItemClicked,
+                        cellSize = mainViewModel.gridState.value
+                    ){
+                        mainViewModel.setFavorite(it)
+                    }
+                }
+            }
         }
-    }
 }

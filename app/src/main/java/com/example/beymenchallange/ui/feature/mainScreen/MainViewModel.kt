@@ -3,29 +3,39 @@ package com.example.beymenchallange.ui.feature.mainScreen
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.beymenchallange.models.MainScreenData
-import com.example.beymenchallange.api.ApiService
+import com.example.beymenchallange.data.models.MainScreenData
+import com.example.beymenchallange.data.api.ApiService
+import com.example.beymenchallange.data.models.FavoriteEntity
+import com.example.beymenchallange.domain.FavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val apiService: ApiService,
+    private val favoriteUseCase: FavoriteUseCase
+) : ViewModel() {
 
-    private val _state = mutableStateOf(2)
+    private val _gridState = mutableStateOf(2)
 
-    val state
-    get() = _state
+    private val _responseState = mutableStateOf<MainScreenData?>(null)
 
-    fun changeGrid(){
-        if (_state.value == 1)
-            _state.value = 2
+    val gridState
+        get() = _gridState
+
+    val responseState
+        get() = _responseState
+
+    fun changeGrid() {
+        if (_gridState.value == 1)
+            _gridState.value = 2
         else
-            _state.value = 1
+            _gridState.value = 1
     }
 
-    fun getMainScreen(): MainScreenData? {
+    fun getMainScreen(){
         var result: MainScreenData? = null
         viewModelScope.launch {
             runBlocking {
@@ -34,9 +44,31 @@ class MainViewModel @Inject constructor(private val apiService: ApiService) : Vi
                     sayfa = "1",
                     categoryId = "10020",
                     includeDocuments = true
-                    )
+                )
+                favoriteUseCase.getFavoriteItems().forEach { favProduct ->
+                    result!!.Result.ProductList.forEach { product ->
+                        if (favProduct.productId == product.ProductId){
+                            product.isFavorite = true
+                        }
+                    }
+
+                }
             }
         }
-        return result
+        _responseState.value = result
+    }
+
+
+    fun setFavorite(productId : Int) {
+        viewModelScope.launch {
+            favoriteUseCase.getFavoriteItems().forEach {
+                if (it.productId == productId){
+                    favoriteUseCase.setFavoriteItem(FavoriteEntity(productId, !it.isFavorite))
+                    return@launch
+                }
+            }
+            favoriteUseCase.setFavoriteItem(FavoriteEntity(productId, true))
+        }
+        getMainScreen()
     }
 }

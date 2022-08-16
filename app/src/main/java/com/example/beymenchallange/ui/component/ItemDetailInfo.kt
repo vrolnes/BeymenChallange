@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.beymenchallange.models.DetailResult
+import com.example.beymenchallange.data.models.DetailResult
 
 @Composable
 fun ItemDetailInfo(modifier: Modifier, item: DetailResult) {
