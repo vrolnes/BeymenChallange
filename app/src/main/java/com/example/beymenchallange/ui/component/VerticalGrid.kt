@@ -10,11 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.beymenchallange.data.models.Product
+import com.example.beymenchallange.data.remote.models.Product
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun VerticalGrid(gridItems: List<Product>, onItemClicked: (String) -> Unit, cellSize: Int, onFavClicked: (Int) -> Unit) {
+fun VerticalGrid(
+    gridItems: List<Product>,
+    onItemClicked: (String) -> Unit,
+    cellSize: Int,
+    onFavClicked: (Int) -> Unit
+) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(cellSize),
     ) {
@@ -25,7 +30,11 @@ fun VerticalGrid(gridItems: List<Product>, onItemClicked: (String) -> Unit, cell
 }
 
 @Composable
-fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit, onFavClicked: (Int) -> Unit) {
+fun VerticalGridItem(
+    scrollItem: Product,
+    onItemClicked: (String) -> Unit,
+    onFavClicked: (Int) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

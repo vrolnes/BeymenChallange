@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.beymenchallange.data.models.DetailResult
+import com.example.beymenchallange.data.remote.models.DetailResult
 
 @Composable
 fun ItemDetailInfo(modifier: Modifier, item: DetailResult) {
@@ -34,6 +34,7 @@ fun ItemDescription(modifier: Modifier, item: DetailResult) {
         item.let {
             Text(text = it.DisplayName.toString())
             Text(text = it.CategoryName.toString())
-            Text(text = it.ActualPriceText.toString())        }
+            Text(text = it.ActualPriceText.toString())
+        }
     }
 }

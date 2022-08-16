@@ -3,9 +3,9 @@ package com.example.beymenchallange.ui.feature.mainScreen
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.beymenchallange.data.models.MainScreenData
-import com.example.beymenchallange.data.api.ApiService
-import com.example.beymenchallange.data.models.FavoriteEntity
+import com.example.beymenchallange.data.remote.models.MainScreenData
+import com.example.beymenchallange.data.remote.api.ApiService
+import com.example.beymenchallange.data.local.models.FavoriteEntity
 import com.example.beymenchallange.domain.FavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -35,7 +35,7 @@ class MainViewModel @Inject constructor(
             _gridState.value = 1
     }
 
-    fun getMainScreen(){
+    fun getMainScreen() {
         var result: MainScreenData? = null
         viewModelScope.launch {
             runBlocking {
@@ -47,7 +47,7 @@ class MainViewModel @Inject constructor(
                 )
                 favoriteUseCase.getFavoriteItems().forEach { favProduct ->
                     result!!.Result.ProductList.forEach { product ->
-                        if (favProduct.productId == product.ProductId){
+                        if (favProduct.productId == product.ProductId) {
                             product.isFavorite = favProduct.isFavorite
                         }
                     }
@@ -59,10 +59,10 @@ class MainViewModel @Inject constructor(
     }
 
 
-    fun setFavorite(productId : Int) {
+    fun setFavorite(productId: Int) {
         viewModelScope.launch {
             favoriteUseCase.getFavoriteItems().forEach {
-                if (it.productId == productId){
+                if (it.productId == productId) {
                     favoriteUseCase.setFavoriteItem(FavoriteEntity(productId, !it.isFavorite))
                     return@launch
                 }

@@ -26,10 +26,10 @@ fun DetailScreen(code: String?, detailViewModel: DetailViewModel) {
                 imageUrl = it.Result?.Images?.get(0)?.Images?.get(0)?.ImageUrl.toString(),
                 contentAlignment = Alignment.TopEnd,
                 it.isFavorite ?: false
-            ){
+            ) {
                 detailViewModel.setFavorite(it.Result?.ProductId!!)
             }
-          it.Result?.let { it1 ->
+            it.Result?.let { it1 ->
                 ItemDetailInfo(modifier = Modifier.fillMaxWidth(), item = it1)
                 ItemDescription(modifier = Modifier.fillMaxWidth(), item = it1)
             }

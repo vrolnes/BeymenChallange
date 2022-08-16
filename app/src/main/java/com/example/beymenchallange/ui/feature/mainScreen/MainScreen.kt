@@ -16,23 +16,23 @@ fun MainScreen(
     onItemClicked: (String) -> Unit,
     mainViewModel: MainViewModel
 ) {
-    LaunchedEffect(key1 = null){
+    LaunchedEffect(key1 = null) {
         mainViewModel.getMainScreen()
     }
-        Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Change Grid Style", modifier = Modifier.clickable {
-                mainViewModel.changeGrid()
-            })
-            mainViewModel.responseState.value?.Result?.ProductList.let { it1 ->
-                if (it1 != null) {
-                    VerticalGrid(
-                        gridItems = it1,
-                        onItemClicked = onItemClicked,
-                        cellSize = mainViewModel.gridState.value
-                    ){
-                        mainViewModel.setFavorite(it)
-                    }
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "Change Grid Style", modifier = Modifier.clickable {
+            mainViewModel.changeGrid()
+        })
+        mainViewModel.responseState.value?.Result?.ProductList.let { it1 ->
+            if (it1 != null) {
+                VerticalGrid(
+                    gridItems = it1,
+                    onItemClicked = onItemClicked,
+                    cellSize = mainViewModel.gridState.value
+                ) {
+                    mainViewModel.setFavorite(it)
                 }
             }
         }
+    }
 }

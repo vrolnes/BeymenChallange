@@ -1,4 +1,4 @@
-package com.example.beymenchallange.data.models
+package com.example.beymenchallange.data.local.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

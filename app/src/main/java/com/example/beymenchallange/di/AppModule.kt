@@ -3,7 +3,7 @@ package com.example.beymenchallange.di
 import android.content.Context
 import androidx.room.Room
 import com.example.beymenchallange.other.Constants.BASE_URL
-import com.example.beymenchallange.data.api.ApiService
+import com.example.beymenchallange.data.remote.api.ApiService
 import com.example.beymenchallange.data.local.AppDatabase
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

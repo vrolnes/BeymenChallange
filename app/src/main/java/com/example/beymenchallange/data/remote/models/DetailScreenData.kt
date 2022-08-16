@@ -1,4 +1,4 @@
-package com.example.beymenchallange.data.models
+package com.example.beymenchallange.data.remote.models
 data class DetailScreenData(
     val Exception: Any?,
     val IsOriginFromCheckout: Boolean?,
