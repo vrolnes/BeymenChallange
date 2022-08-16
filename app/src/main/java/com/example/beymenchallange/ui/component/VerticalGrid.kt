@@ -39,7 +39,7 @@ fun VerticalGridItem(scrollItem: Product, onItemClicked: (String) -> Unit, onFav
             Modifier.fillMaxWidth(),
             scrollItem.ImageUrl,
             contentAlignment = Alignment.TopEnd,
-            false
+            scrollItem.isFavorite ?: false
         ) {
             onFavClicked(scrollItem.ProductId)
         }

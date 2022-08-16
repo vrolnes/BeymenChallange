@@ -48,7 +48,7 @@ class MainViewModel @Inject constructor(
                 favoriteUseCase.getFavoriteItems().forEach { favProduct ->
                     result!!.Result.ProductList.forEach { product ->
                         if (favProduct.productId == product.ProductId){
-                            product.isFavorite = true
+                            product.isFavorite = favProduct.isFavorite
                         }
                     }
 

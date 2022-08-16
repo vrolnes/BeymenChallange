@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.beymenchallange.ui.component.VerticalGrid
@@ -15,7 +16,9 @@ fun MainScreen(
     onItemClicked: (String) -> Unit,
     mainViewModel: MainViewModel
 ) {
-    mainViewModel.getMainScreen()
+    LaunchedEffect(key1 = null){
+        mainViewModel.getMainScreen()
+    }
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Change Grid Style", modifier = Modifier.clickable {
                 mainViewModel.changeGrid()

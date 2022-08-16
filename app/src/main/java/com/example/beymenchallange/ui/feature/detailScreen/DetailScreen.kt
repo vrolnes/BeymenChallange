@@ -25,7 +25,7 @@ fun DetailScreen(code: String?, detailViewModel: DetailViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 imageUrl = it.Result?.Images?.get(0)?.Images?.get(0)?.ImageUrl.toString(),
                 contentAlignment = Alignment.TopEnd,
-                true
+                it.isFavorite ?: false
             ){
                 detailViewModel.setFavorite(it.Result?.ProductId!!)
             }
